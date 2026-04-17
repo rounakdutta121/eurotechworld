@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurotech Plumbing Training Institute | Mohali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; }
+        .hero-section { width: 100%; height: 100vh; position: relative; overflow: hidden; }
+        .hero-section video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Scroll Animations */
+        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s ease; }
+        .fade-left.visible { opacity: 1; transform: translateX(0); }
+        .fade-right { opacity: 0; transform: translateX(40px); transition: all 0.8s ease; }
+        .fade-right.visible { opacity: 1; transform: translateX(0); }
+        .fade-in { opacity: 0; transition: opacity 0.8s ease; }
+        .fade-in.visible { opacity: 1; }
+        
+        /* Hover Lift */
+        .hover-lift { transition: all 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        
+        /* Scale on Hover */
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: scale(1.05); }
+        
+        /* Glow Pulse */
+        .glow-pulse { animation: glowPulse 2s ease-in-out infinite; }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(245,158,11,0.3); }
+            50% { box-shadow: 0 0 40px rgba(245,158,11,0.6); }
+        }
+        
+        /* Float Animation */
+        .float { animation: float 3s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Bounce Animation */
+        .bounce { animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        /* Pulse Animation */
+        .pulse { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Icon Spin on Hover */
+        .icon-spin:hover i { animation: spin 0.5s ease; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        /* Button Arrow Move */
+        .arrow-move:hover i { animation: arrowMove 0.5s ease; }
+        @keyframes arrowMove { 50% { transform: translateX(5px); } }
+        
+        /* Card Shine Effect */
+        .card-shine { position: relative; overflow: hidden; }
+        .card-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .card-shine:hover::before { left: 100%; }
+        
+        /* Counter Animation */
+        .counter { display: inline-block; }
+        
+        /* Stagger Delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+        
+        /* Icon Bounce */
+        .icon-bounce:hover i { animation: iconBounce 0.5s ease; }
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* Border Animation */
+        .border-animate { position: relative; }
+        .border-animate::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f59e0b;
+            transition: width 0.3s ease;
+        }
+        .border-animate:hover::after { width: 100%; }
+        
+        /* Rotate on Hover */
+        .rotate:hover i { transform: rotate(15deg); transition: transform 0.3s ease; }
+        
+        /* Water Animation */
+        #water-effect {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            min-height: 50px;
+            background: linear-gradient(180deg, rgba(0, 80, 180, 0.5) 0%, rgba(0, 50, 120, 0.7) 100%) !important;
+            z-index: 1 !important;
+            pointer-events: none !important;
+            transition: height 0.5s ease !important;
+            overflow: hidden !important;
+            display: block !important;
+            visibility: visible !important;
+        }
+        .wave {
+            position: absolute;
+            top: -30px;
+            left: -50%;
+            width: 200%;
+            height: 60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z' fill='rgba(0,150,255,0.9)'/%3E%3C/svg%3E") repeat-x;
+            background-size: 600px 60px;
+            animation: wave 4s linear infinite;
+        }
+        .wave:nth-child(2) {
+            top: -25px;
+            opacity: 0.6;
+            animation: wave 3s linear infinite reverse;
+            animation-delay: 0.5s;
+        }
+        .wave:nth-child(3) {
+            top: -20px;
+            opacity: 0.4;
+            animation: wave 5s linear infinite;
+            animation-delay: 1s;
+        }
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(600px); }
+        }
+        .water-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -30px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            border-radius: 50%;
+            animation: rise linear infinite;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-800px) scale(0.3); opacity: 0; }
+        }
+        
+        /* Fish Animation */
+        .fish {
+            position: fixed !important;
+            bottom: 15% !important;
+            left: 0 !important;
+            opacity: 0;
+            z-index: 2 !important;
+            pointer-events: none;
+            transition: opacity 1s ease !important;
+        }
+        .fish svg {
+            width: 50px;
+            height: 30px;
+        }
+        .fish-inner {
+            animation: swim 8s ease-in-out infinite;
+        }
+        @keyframes swim {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(150px) rotate(5deg); }
+            50% { transform: translateX(300px) rotate(0deg); }
+            75% { transform: translateX(150px) rotate(-5deg); }
+        }
+        .fish:nth-child(even) .fish-inner {
+            animation-direction: reverse;
+        }
+        .fish.visible {
+            opacity: 0.9 !important;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-100 bg-slate-900">
+
+    <!-- Navbar -->
+    <nav class="bg-slate-800/90 backdrop-blur-sm shadow-lg fixed w-full z-50 top-0 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="https://www.eurotechworld.net/wp-content/uploads/2019/08/cropped-Eurotechworld-logo.jpg" alt="Eurotech Logo" class="h-14 w-auto">
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-gray-300 hover:text-secondary font-medium transition">About Us</a>
+                    <a href="#highlights" class="text-gray-300 hover:text-secondary font-medium transition">Highlights</a>
+                    <a href="#courses" class="text-gray-300 hover:text-secondary font-medium transition">Courses & Pricing</a>
+                    <a href="#contact-form" class="bg-secondary text-slate-900 px-5 py-2 rounded-md font-medium hover:bg-yellow-400 transition">Contact Us</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-secondary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 text-gray-300 font-medium">About Us</a>
+                <a href="#highlights" class="block px-3 py-2 text-gray-300 font-medium">Highlights</a>
+                <a href="#courses" class="block px-3 py-2 text-gray-300 font-medium">Courses & Pricing</a>
+                <a href="#contact-form" class="block px-3 py-2 text-secondary font-bold">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-center">
+        <video autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dadofd9d2/video/upload/v1776401041/a-professional-video-showcasing-a-modern-vocationa_uwvhml.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-slate-900/85"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4" style="z-index: 10;">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-900/50 text-blue-200 border border-blue-500/30 text-sm font-semibold tracking-wide mb-6 pulse fade-up">
+                Professional Plumbing Training Institute – Mohali
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 fade-up delay-1">
+                Build Your Career in the <br class="hidden md:block"> <span class="text-secondary">Plumbing Industry</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto fade-up delay-2">
+                Hands-on, industry-focused plumbing training designed to make you job-ready. Enroll today and secure your future.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 fade-up delay-3">
+                <a href="#courses" class="bg-secondary hover:bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-lg transition transform hover:-translate-y-2 shadow-lg shadow-yellow-500/30 hover:shadow-yellow-500/50 icon-spin flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-tools"></i> Explore Our Courses
+                </a>
+                <a href="#contact-form" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold py-3 px-8 rounded-lg transition transform hover:-translate-y-2 arrow-move flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone"></i> Contact Institute
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12 relative z-10">
+                <div class="md:w-1/2 fade-left relative z-10">
+                    <div class="relative hover-scale">
+                        <video autoplay muted loop playsinline class="w-full h-80 object-cover rounded-xl shadow-xl border border-slate-700">
+                            <source src="https://res.cloudinary.com/dadofd9d2/video/upload/v1776402119/practical-plumbing-training-session-in-a-modern-fa_rljb79.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute -bottom-6 -right-6 bg-secondary text-slate-900 p-6 rounded-xl shadow-lg border-4 border-slate-800 hidden lg:block glow-pulse">
+                            <p class="text-3xl font-bold">100%</p>
+                            <p class="text-sm">Job-Ready Focus</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 fade-right">
+                    <h2 class="text-sm font-bold text-secondary uppercase tracking-wider mb-2">About Us</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Empowering Your Skills for the Modern Industry</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        <strong>Eurotech Assessment & Certification Services Pvt. Ltd.</strong> is a trusted vocational training institute specializing in skill-based education. 
+                        We place a strong focus on practical learning and industry requirements to bridge the gap between academic knowledge and real-world application.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start hover-lift p-3 rounded-lg transition">
+                            <i class="fa-solid fa-circle-check text-green-400 mt-1 mr-3 text-xl icon-bounce"></i>
+                            <span class="text-gray-200">Expert-led training modules</span>
+                        </li>
+                        <li class="flex items-start hover-lift p-3 rounded-lg transition">
+                            <i class="fa-solid fa-circle-check text-green-400 mt-1 mr-3 text-xl icon-bounce"></i>
+                            <span class="text-gray-200">State-of-the-art learning facilities in Mohali</span>
+                        </li>
+                        <li class="flex items-start hover-lift p-3 rounded-lg transition">
+                            <i class="fa-solid fa-circle-check text-green-400 mt-1 mr-3 text-xl icon-bounce"></i>
+                            <span class="text-gray-200">Dedicated career building support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section id="highlights" class="py-20 bg-slate-900 border-y border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Course Highlights</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Our methodology ensures you get the most effective training experience possible.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-secondary/50 transition hover-lift card-shine fade-up delay-1 relative z-10">
+                    <div class="w-14 h-14 bg-blue-900/50 text-secondary rounded-lg flex items-center justify-center text-2xl mb-6 icon-bounce">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">90% Practical Training</h4>
+                    <p class="text-gray-400">Focus on doing rather than just reading. Get your hands dirty and learn by executing real tasks.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-secondary/50 transition hover-lift card-shine fade-up delay-2">
+                    <div class="w-14 h-14 bg-blue-900/50 text-secondary rounded-lg flex items-center justify-center text-2xl mb-6 icon-bounce">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Experienced Trainers</h4>
+                    <p class="text-gray-400">Learn directly from industry veterans who bring years of on-site plumbing experience to the classroom.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-secondary/50 transition hover-lift card-shine fade-up delay-3">
+                    <div class="w-14 h-14 bg-blue-900/50 text-secondary rounded-lg flex items-center justify-center text-2xl mb-6 icon-bounce">
+                        <i class="fa-solid fa-hands"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Hands-on Practice</h4>
+                    <p class="text-gray-400">Extensive hours dedicated strictly to refining your manual skills and technical precision.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-secondary/50 transition hover-lift card-shine fade-up delay-4">
+                    <div class="w-14 h-14 bg-blue-900/50 text-secondary rounded-lg flex items-center justify-center text-2xl mb-6 icon-bounce">
+                        <i class="fa-solid fa-toolbox"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Modern Tools Training</h4>
+                    <p class="text-gray-400">Get familiarized with the latest and most advanced plumbing tools currently used in the global industry.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-secondary/50 transition hover-lift card-shine fade-up delay-5">
+                    <div class="w-14 h-14 bg-blue-900/50 text-secondary rounded-lg flex items-center justify-center text-2xl mb-6 icon-bounce">
+                        <i class="fa-solid fa-hard-hat"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Real Site Simulation</h4>
+                    <p class="text-gray-400">Train in environments designed to mimic actual construction and maintenance work sites.</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-secondary/50 transition hover-lift card-shine fade-up delay-6">
+                    <div class="w-14 h-14 bg-blue-900/50 text-secondary rounded-lg flex items-center justify-center text-2xl mb-6 icon-bounce">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Small Batch Size</h4>
+                    <p class="text-gray-400">Personalized attention is guaranteed with limited students per batch, ensuring nobody falls behind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Overview Banner -->
+    <section class="bg-gradient-to-r from-blue-900 to-slate-900 py-12 text-white relative overflow-hidden">
+        <div class="absolute top-10 left-10 opacity-20 float">
+            <i class="fa-solid fa-certificate text-6xl text-secondary"></i>
+        </div>
+        <div class="absolute bottom-10 right-20 opacity-20 float" style="animation-delay: 0.5s;">
+            <i class="fa-solid fa-award text-5xl text-secondary"></i>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div class="flex-1 fade-up">
+                <h3 class="text-3xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-award text-secondary text-4xl mr-4 glow-pulse"></i> 
+                    Global Certification Value
+                </h3>
+                <p class="text-blue-200 text-lg mb-4">Stand out in the competitive job market with credentials that prove your expertise.</p>
+                <ul class="flex flex-col md:flex-row gap-4 md:gap-8">
+                    <li class="flex items-center bg-blue-800/50 px-4 py-2 rounded-lg border border-blue-700/50 hover:border-secondary/50 transition hover-lift">
+                        <i class="fa-solid fa-check text-secondary mr-2"></i> Certification from IEB, London (UK)
+                    </li>
+                    <li class="flex items-center bg-blue-800/50 px-4 py-2 rounded-lg border border-blue-700/50 hover:border-secondary/50 transition hover-lift">
+                        <i class="fa-solid fa-check text-secondary mr-2"></i> Industry-recognized
+                    </li>
+                    <li class="flex items-center bg-blue-800/50 px-4 py-2 rounded-lg border border-blue-700/50 hover:border-secondary/50 transition hover-lift">
+                        <i class="fa-solid fa-check text-secondary mr-2"></i> Practical skill-based assessment
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Courses Section -->
+    <section id="courses" class="py-24 bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Our Plumbing Courses & Plans</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-8">Choose the perfect program for your career level. We offer flexible pricing depending on your certification needs.</p>
+                <div class="inline-flex bg-slate-900 rounded-lg p-1 shadow-inner border border-slate-700 relative">
+                    <button id="btn-without" onclick="setPricing(false)" class="relative z-10 px-6 py-3 rounded-md font-bold text-sm transition-all duration-300 bg-secondary text-slate-900 shadow hover:scale-105">
+                        Training Only (No Cert.)
+                    </button>
+                    <button id="btn-with" onclick="setPricing(true)" class="relative z-10 px-6 py-3 rounded-md font-bold text-sm transition-all duration-300 text-gray-400 hover:text-white hover:scale-105">
+                        Include IEB London Cert.
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch relative z-10">
+                <!-- Plan 1 -->
+                <div class="bg-slate-900 border border-slate-700 rounded-2xl flex flex-col hover:shadow-xl hover:border-secondary/50 transition-all relative overflow-hidden card-shine hover-lift fade-up delay-1 relative z-10">
+                    <div class="p-6 border-b border-slate-800 flex-grow">
+                        <div class="bg-blue-900/50 text-blue-300 text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-md inline-block mb-4 border border-blue-800">Basic</div>
+                        <h3 class="text-xl font-extrabold text-white mb-2">Plumbing Basic Course</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex items-center"><i class="fa-regular fa-clock mr-2 icon-bounce"></i> 15 Working Days</p>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-secondary" id="price-basic">₹15,000</span>
+                            <span class="text-gray-500 text-sm">/ person</span>
+                        </div>
+                        <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex items-center">
+                            <i class="fa-solid fa-graduation-cap text-secondary mr-2"></i>
+                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th</span>
+                        </div>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Core Plumbing Principles</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Basic Pipe Fitting & Joining</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Tool Identification & Usage</span>
+                            </li>
+                            <li class="flex items-start" id="cert-feature-basic">
+                                <i class="fa-solid fa-times text-red-500 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-600 line-through">IEB London (UK) Certification</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="#contact-form" class="block w-full text-center bg-slate-700 hover:bg-secondary hover:text-slate-900 text-white font-bold py-3 px-4 rounded-lg transition border border-slate-600 hover:border-secondary arrow-move flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Enquire Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 2 -->
+                <div class="bg-slate-900 border-2 border-secondary rounded-2xl shadow-lg shadow-yellow-500/10 flex flex-col hover:shadow-xl transition-all relative transform md:-translate-y-2 card-shine hover-lift fade-up delay-2">
+                    <div class="absolute top-0 inset-x-0 bg-secondary text-slate-900 text-center text-xs font-bold py-1 uppercase tracking-wider pulse">Most Popular</div>
+                    <div class="p-6 border-b border-slate-800 flex-grow mt-4">
+                        <div class="bg-blue-900/50 text-blue-300 text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-md inline-block mb-4 border border-blue-800">Foundation</div>
+                        <h3 class="text-xl font-extrabold text-white mb-2">Plumbing Foundation Course</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex items-center"><i class="fa-regular fa-clock mr-2 icon-bounce"></i> 30 Working Days</p>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-secondary" id="price-foundation">₹25,000</span>
+                            <span class="text-gray-500 text-sm">/ person</span>
+                        </div>
+                        <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex items-center">
+                            <i class="fa-solid fa-graduation-cap text-secondary mr-2"></i>
+                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th</span>
+                        </div>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Everything in Basic</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Advanced Fixture Installation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Drainage System Layouts</span>
+                            </li>
+                            <li class="flex items-start" id="cert-feature-foundation">
+                                <i class="fa-solid fa-times text-red-500 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-600 line-through">IEB London (UK) Certification</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="#contact-form" class="block w-full text-center bg-secondary hover:bg-yellow-400 text-slate-900 font-bold py-3 px-4 rounded-lg transition shadow-lg shadow-yellow-500/30 arrow-move flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-rocket"></i> Enquire Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="bg-slate-900 border border-slate-700 rounded-2xl flex flex-col hover:shadow-xl hover:border-secondary/50 transition-all relative overflow-hidden card-shine hover-lift fade-up delay-3">
+                    <div class="p-6 border-b border-slate-800 flex-grow">
+                        <div class="bg-blue-900/50 text-blue-300 text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-md inline-block mb-4 border border-blue-800">Advanced</div>
+                        <h3 class="text-xl font-extrabold text-white mb-2">Hi-Tech Plumbing Course</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex items-center"><i class="fa-regular fa-clock mr-2 icon-bounce"></i> 40 Working Days</p>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-secondary" id="price-hitech">₹35,000</span>
+                            <span class="text-gray-500 text-sm">/ person</span>
+                        </div>
+                        <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex items-center">
+                            <i class="fa-solid fa-graduation-cap text-secondary mr-2"></i>
+                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th</span>
+                        </div>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Everything in Foundation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Modern Sensor Fittings</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">High-Pressure Systems</span>
+                            </li>
+                            <li class="flex items-start" id="cert-feature-hitech">
+                                <i class="fa-solid fa-times text-red-500 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-600 line-through">IEB London (UK) Certification</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="#contact-form" class="block w-full text-center bg-slate-700 hover:bg-secondary hover:text-slate-900 text-white font-bold py-3 px-4 rounded-lg transition border border-slate-600 hover:border-secondary arrow-move flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Enquire Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 4 -->
+                <div class="bg-slate-900 border border-slate-700 rounded-2xl flex flex-col hover:shadow-xl hover:border-secondary/50 transition-all relative overflow-hidden card-shine hover-lift fade-up delay-4">
+                    <div class="p-6 border-b border-slate-800 flex-grow">
+                        <div class="bg-purple-900/50 text-purple-300 text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-md inline-block mb-4 border border-purple-800">Engineering</div>
+                        <h3 class="text-xl font-extrabold text-white mb-2">Plumbing Design & Drafting</h3>
+                        <p class="text-gray-500 text-sm mb-6 flex items-center"><i class="fa-regular fa-clock mr-2 icon-bounce"></i> 40 Working Days</p>
+                        <div class="mb-6">
+                            <span class="text-3xl font-extrabold text-secondary" id="price-design">₹35,000</span>
+                            <span class="text-gray-500 text-sm">/ person</span>
+                        </div>
+                        <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex flex-col gap-1">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-graduation-cap text-purple-400 mr-2 mt-1"></i>
+                                <span class="font-medium text-gray-300">Eligibility: Minimum Diploma</span>
+                            </div>
+                            <span class="text-xs text-gray-600 ml-6">(with AutoCAD knowledge)</span>
+                        </div>
+                        <ul class="space-y-4 text-sm">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">AutoCAD Drafting for MEP</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">System Sizing & Calculations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-green-400 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-300">Blueprint Generation</span>
+                            </li>
+                            <li class="flex items-start" id="cert-feature-design">
+                                <i class="fa-solid fa-times text-red-500 mt-1 mr-3 w-4"></i>
+                                <span class="text-gray-600 line-through">IEB London (UK) Certification</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 mt-auto">
+                        <a href="#contact-form" class="block w-full text-center bg-slate-700 hover:bg-secondary hover:text-slate-900 text-white font-bold py-3 px-4 rounded-lg transition border border-slate-600 hover:border-secondary arrow-move flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Enquire Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fire Plumbing Course Spotlight -->
+    <section class="py-16 bg-gray-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-gradient-to-r from-red-900 to-gray-800 rounded-2xl border border-red-700/50 p-8 md:p-12 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10 relative z-10">
+                <div class="md:w-1/2">
+                    <div class="inline-flex items-center space-x-2 bg-red-600/20 text-red-400 text-sm font-bold px-3 py-1 rounded-full mb-4 border border-red-500/30">
+                        <i class="fa-solid fa-fire-extinguisher"></i>
+                        <span>Specialized Module</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-white">Fire Plumbing Course</h2>
+                    <p class="text-gray-300 text-lg mb-6 flex items-center">
+                        <i class="fa-regular fa-clock text-red-400 mr-2"></i> 30 Working Days Duration
+                    </p>
+                    <p class="text-gray-400 mb-6">Master the critical systems required for commercial and residential fire safety compliance. A highly sought-after skill in modern infrastructure projects.</p>
+                </div>
+                
+                <div class="md:w-1/2 w-full bg-black/30 p-6 rounded-xl border border-white/10">
+                    <h4 class="text-xl font-bold mb-4 text-white">Course Includes:</h4>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-200">
+                            <div class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                            Fire Fighting Systems (Wet & Dry Riser)
+                        </li>
+                        <li class="flex items-center text-gray-200">
+                            <div class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                            Sprinkler System Installation
+                        </li>
+                        <li class="flex items-center text-gray-200">
+                            <div class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                            Fire Pump Basics
+                        </li>
+                        <li class="flex items-center text-gray-200">
+                            <div class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                            Hydrant System Layout
+                        </li>
+                        <li class="flex items-center text-gray-200">
+                            <div class="w-8 h-8 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center mr-3 flex-shrink-0">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </div>
+                            Safety Standards
+                        </li>
+                    </ul>
+                    <a href="#contact-form" class="w-full inline-block text-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition shadow-lg shadow-red-900/50">
+                        Contact Us For Pricing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="py-20 bg-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Get In Touch</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Have questions? Fill out the form below and we'll get back to you shortly.</p>
+            </div>
+            
+            <form class="bg-slate-900 p-8 rounded-2xl border border-slate-700 shadow-xl relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-300 font-medium mb-2">Name</label>
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 font-medium mb-2">Email</label>
+                        <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 font-medium mb-2">Phone</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 font-medium mb-2">Location</label>
+                        <input type="text" name="location" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-300 font-medium mb-2">Service</label>
+                    <select name="service" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition">
+                        <option value="" disabled selected class="text-gray-500">Select a service</option>
+                        <option value="plumbing-basic">Plumbing Basic Course</option>
+                        <option value="plumbing-foundation">Plumbing Foundation Course</option>
+                        <option value="plumbing-hitech">Hi-Tech Plumbing Course</option>
+                        <option value="plumbing-design">Plumbing Design & Drafting</option>
+                        <option value="fire-plumbing">Fire Plumbing Course</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-8">
+                    <label class="block text-gray-300 font-medium mb-2">Message</label>
+                    <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-secondary hover:bg-yellow-400 text-slate-900 font-bold py-4 px-8 rounded-lg transition shadow-lg shadow-yellow-500/30">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer id="contact" class="bg-slate-900 border-t border-slate-700 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <img src="https://www.eurotechworld.net/wp-content/uploads/2019/08/cropped-Eurotechworld-logo.jpg" alt="Eurotech Logo" class="h-12 w-auto mb-4">
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Eurotech Assessment & Certification Services Pvt. Ltd.<br>
+                        Building professionals through intensive, practical vocational training since inception.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-secondary transition">About Institute</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-secondary transition">Plumbing Basic to Hi-Tech</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-secondary transition">Design & Drafting</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-secondary transition">Fire Plumbing Courses</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-secondary transition">Certification Verification</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Contact Information</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-secondary mt-1 mr-3 w-5 text-center"></i>
+                            <span class="text-gray-400">Plot No 146, Sector 82,<br>JLPL Industrial area,<br>Mohali, Punjab 140308</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone text-secondary mr-3 w-5 text-center"></i>
+                            <span class="text-gray-400">+91-9120884044<br>+91-7347001401</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope text-secondary mr-3 w-5 text-center"></i>
+                            <div class="flex flex-col">
+                                <a href="mailto:eurotechplumbingtraining@gmail.com" class="text-gray-400 hover:text-secondary text-sm">eurotechplumbingtraining@gmail.com</a>
+                                <a href="mailto:welding.trg@eurotechworld.net" class="text-gray-400 hover:text-secondary text-sm mt-1">welding.trg@eurotechworld.net</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-globe text-secondary mr-3 w-5 text-center"></i>
+                            <a href="http://www.eurotechworld.net" target="_blank" class="text-gray-400 hover:text-secondary">www.eurotechworld.net</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 Eurotech Assessment & Certification Services Pvt. Ltd. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const plans = [
+            { id: 'basic', without: '15,000', with: '20,000' },
+            { id: 'foundation', without: '25,000', with: '30,000' },
+            { id: 'hitech', without: '35,000', with: '40,000' },
+            { id: 'design', without: '35,000', with: '40,000' }
+        ];
+
+        function setPricing(isCertified) {
+            const btnWithout = document.getElementById('btn-without');
+            const btnWith = document.getElementById('btn-with');
+
+            if(isCertified) {
+                btnWith.classList.add('bg-secondary', 'text-slate-900', 'shadow');
+                btnWith.classList.remove('text-gray-400', 'hover:text-white');
+                btnWithout.classList.remove('bg-secondary', 'text-slate-900', 'shadow');
+                btnWithout.classList.add('text-gray-400', 'hover:text-white');
+                plans.forEach(p => {
+                    document.getElementById(`price-${p.id}`).innerText = `₹${p.with}`;
+                    const certFeature = document.getElementById(`cert-feature-${p.id}`);
+                    certFeature.innerHTML = `
+                        <i class="fa-solid fa-certificate text-secondary mt-1 mr-3 w-4"></i>
+                        <span class="font-bold text-secondary">IEB London (UK) Certification</span>
+                    `;
+                });
+            } else {
+                btnWithout.classList.add('bg-secondary', 'text-slate-900', 'shadow');
+                btnWithout.classList.remove('text-gray-400', 'hover:text-white');
+                btnWith.classList.remove('bg-secondary', 'text-slate-900', 'shadow');
+                btnWith.classList.add('text-gray-400', 'hover:text-white');
+                plans.forEach(p => {
+                    document.getElementById(`price-${p.id}`).innerText = `₹${p.without}`;
+                    const certFeature = document.getElementById(`cert-feature-${p.id}`);
+                    certFeature.innerHTML = `
+                        <i class="fa-solid fa-times text-red-500 mt-1 mr-3 w-4"></i>
+                        <span class="text-gray-600 line-through">IEB London (UK) Certification</span>
+                    `;
+                });
+            }
+        }
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Water Animation on Scroll
+        function initWaterEffect() {
+            const waterEffect = document.getElementById('water-effect');
+            const bubblesContainer = document.getElementById('bubbles');
+            
+            if (!waterEffect || !bubblesContainer) {
+                console.log('Water elements not found');
+                return;
+            }
+            
+            function createBubble() {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 15 + 8;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                bubblesContainer.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 10000);
+            }
+            
+            // Create bubbles periodically
+            setInterval(createBubble, 300);
+            
+            // Initial water height check
+            function updateWaterHeight() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
+                const waterHeight = Math.min(scrollPercent * 120, 100);
+                waterEffect.style.height = waterHeight + '%';
+            }
+            
+            // Update on scroll
+            window.addEventListener('scroll', updateWaterHeight);
+            updateWaterHeight();
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initWaterEffect);
+        } else {
+            initWaterEffect();
+        }
+        
+        // Fish Animation
+        const fishContainer = document.getElementById('fish-container');
+        const fishSVGs = [
+            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#ff6b6b"/><path d="M90 30 L110 10 L110 50 Z" fill="#ff6b6b"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
+            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#feca57"/><path d="M90 30 L110 10 L110 50 Z" fill="#feca57"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
+            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#48dbfb"/><path d="M90 30 L110 10 L110 50 Z" fill="#48dbfb"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
+            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#ff9ff3"/><path d="M90 30 L110 10 L110 50 Z" fill="#ff9ff3"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
+            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#1dd1a1"/><path d="M90 30 L110 10 L110 50 Z" fill="#1dd1a1"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`
+        ];
+        
+        let fishCreated = false;
+        
+        function createFish() {
+            if (fishCreated) return;
+            fishCreated = true;
+            
+            for (let i = 0; i < 6; i++) {
+                const fish = document.createElement('div');
+                fish.className = 'fish';
+                const inner = document.createElement('div');
+                inner.className = 'fish-inner';
+                inner.innerHTML = fishSVGs[i % fishSVGs.length];
+                fish.appendChild(inner);
+                fish.style.left = (Math.random() * 60) + '%';
+                fish.style.bottom = (5 + Math.random() * 25) + '%';
+                fish.style.animationDelay = (Math.random() * 4) + 's';
+                fishContainer.appendChild(fish);
+                
+                setTimeout(() => {
+                    fish.classList.add('visible');
+                }, 300 * i);
+            }
+        }
+        
+        function checkFishVisibility() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            const waterPercent = Math.min(scrollPercent * 1.2, 100);
+            
+            if (waterPercent >= 30) {
+                createFish();
+            }
+        }
+        
+        window.addEventListener('scroll', checkFishVisibility);
+        checkFishVisibility();
+    </script>
+    
+    <!-- WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send/?phone=919056544487&text&type=phone_number&app_absent=0" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110 z-[9999] group">
+        <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
+        <span class="absolute right-full mr-3 bg-white text-gray-800 px-3 py-2 rounded-lg text-sm font-medium shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            Chat with us
+        </span>
+    </a>
+    
+    <!-- Water Animation Container -->
+    <div id="water-effect" style="position: fixed; bottom: 0; left: 0; width: 100%; height: 0%; background: linear-gradient(180deg, rgba(0, 80, 180, 0.5) 0%, rgba(0, 50, 120, 0.7) 100%); z-index: 1; pointer-events: none; overflow: hidden;">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="water-bubbles" id="bubbles"></div>
+    </div>
+    
+    <!-- Fish Container -->
+    <div id="fish-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
+</body>
+</html>
