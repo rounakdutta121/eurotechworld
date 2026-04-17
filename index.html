@@ -79,6 +79,24 @@
         .arrow-move:hover i { animation: arrowMove 0.5s ease; }
         @keyframes arrowMove { 50% { transform: translateX(5px); } }
         
+        /* Glowing Button Animation */
+        .glow-btn {
+            animation: glowBtn 2s ease-in-out infinite;
+        }
+        @keyframes glowBtn {
+            0%, 100% { box-shadow: 0 0 5px rgba(245,158,11,0.3), 0 0 10px rgba(245,158,11,0.2); }
+            50% { box-shadow: 0 0 15px rgba(245,158,11,0.6), 0 0 25px rgba(245,158,11,0.4); }
+        }
+        
+        /* Pulse Border Animation */
+        .pulse-border {
+            animation: pulseBorder 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseBorder {
+            0%, 100% { border-color: rgba(245,158,11,0.3); }
+            50% { border-color: rgba(245,158,11,0.8); }
+        }
+        
         /* Card Shine Effect */
         .card-shine { position: relative; overflow: hidden; }
         .card-shine::before {
@@ -190,31 +208,28 @@
         /* Fish Animation */
         .fish {
             position: fixed !important;
-            bottom: 15% !important;
             left: 0 !important;
             opacity: 0;
-            z-index: 2 !important;
+            z-index: 3 !important;
             pointer-events: none;
             transition: opacity 1s ease !important;
         }
         .fish svg {
-            width: 50px;
-            height: 30px;
+            width: 60px;
+            height: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
         .fish-inner {
-            animation: swim 8s ease-in-out infinite;
+            animation: swim 10s ease-in-out infinite;
         }
         @keyframes swim {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            25% { transform: translateX(150px) rotate(5deg); }
-            50% { transform: translateX(300px) rotate(0deg); }
-            75% { transform: translateX(150px) rotate(-5deg); }
+            0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+            25% { transform: translateX(200px) translateY(-10px) rotate(5deg); }
+            50% { transform: translateX(400px) translateY(5px) rotate(0deg); }
+            75% { transform: translateX(200px) translateY(-5px) rotate(-5deg); }
         }
-        .fish:nth-child(even) .fish-inner {
-            animation-direction: reverse;
-        }
-        .fish.visible {
-            opacity: 0.9 !important;
+        .fish:nth-child(even) {
+            transform: scaleX(-1) !important;
         }
     </style>
 </head>
@@ -228,7 +243,7 @@
                     <img src="https://www.eurotechworld.net/wp-content/uploads/2019/08/cropped-Eurotechworld-logo.jpg" alt="Eurotech Logo" class="h-14 w-auto">
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-gray-300 hover:text-secondary font-medium transition">About Us</a>
+                    <a href="#about" class="text-gray-300 hover:text-secondary font-medium transition">About</a>
                     <a href="#highlights" class="text-gray-300 hover:text-secondary font-medium transition">Highlights</a>
                     <a href="#courses" class="text-gray-300 hover:text-secondary font-medium transition">Courses & Pricing</a>
                     <a href="#contact-form" class="bg-secondary text-slate-900 px-5 py-2 rounded-md font-medium hover:bg-yellow-400 transition">Contact Us</a>
@@ -242,7 +257,7 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 text-gray-300 font-medium">About Us</a>
+                <a href="#about" class="block px-3 py-2 text-gray-300 font-medium">About</a>
                 <a href="#highlights" class="block px-3 py-2 text-gray-300 font-medium">Highlights</a>
                 <a href="#courses" class="block px-3 py-2 text-gray-300 font-medium">Courses & Pricing</a>
                 <a href="#contact-form" class="block px-3 py-2 text-secondary font-bold">Contact Us</a>
@@ -258,7 +273,7 @@
         <div class="absolute inset-0 bg-slate-900/85"></div>
         <div class="relative z-10 max-w-4xl mx-auto px-4" style="z-index: 10;">
             <span class="inline-block py-1 px-3 rounded-full bg-blue-900/50 text-blue-200 border border-blue-500/30 text-sm font-semibold tracking-wide mb-6 pulse fade-up">
-                Professional Plumbing Training Institute – Mohali
+                Professional Plumbing Training Institute – Mohali, Punjab.
             </span>
             <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 fade-up delay-1">
                 Build Your Career in the <br class="hidden md:block"> <span class="text-secondary">Plumbing Industry</span>
@@ -293,7 +308,7 @@
                     </div>
                 </div>
                 <div class="md:w-1/2 fade-right">
-                    <h2 class="text-sm font-bold text-secondary uppercase tracking-wider mb-2">About Us</h2>
+                    <h2 class="text-sm font-bold text-secondary uppercase tracking-wider mb-2">About The Training Institute</h2>
                     <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Empowering Your Skills for the Modern Industry</h3>
                     <p class="text-gray-300 text-lg leading-relaxed mb-6">
                         <strong>Eurotech Assessment & Certification Services Pvt. Ltd.</strong> is a trusted vocational training institute specializing in skill-based education. 
@@ -384,12 +399,12 @@
             <div class="flex-1 fade-up">
                 <h3 class="text-3xl font-bold mb-4 flex items-center">
                     <i class="fa-solid fa-award text-secondary text-4xl mr-4 glow-pulse"></i> 
-                    Global Certification Value
+                    Global Accrediation & Certification Value
                 </h3>
                 <p class="text-blue-200 text-lg mb-4">Stand out in the competitive job market with credentials that prove your expertise.</p>
                 <ul class="flex flex-col md:flex-row gap-4 md:gap-8">
                     <li class="flex items-center bg-blue-800/50 px-4 py-2 rounded-lg border border-blue-700/50 hover:border-secondary/50 transition hover-lift">
-                        <i class="fa-solid fa-check text-secondary mr-2"></i> Certification from IEB, London (UK)
+                        <i class="fa-solid fa-check text-secondary mr-2"></i> Accrediations from International Education Board (IEB), London (UK)
                     </li>
                     <li class="flex items-center bg-blue-800/50 px-4 py-2 rounded-lg border border-blue-700/50 hover:border-secondary/50 transition hover-lift">
                         <i class="fa-solid fa-check text-secondary mr-2"></i> Industry-recognized
@@ -412,7 +427,7 @@
                     <button id="btn-without" onclick="setPricing(false)" class="relative z-10 px-6 py-3 rounded-md font-bold text-sm transition-all duration-300 bg-secondary text-slate-900 shadow hover:scale-105">
                         Training Only (No Cert.)
                     </button>
-                    <button id="btn-with" onclick="setPricing(true)" class="relative z-10 px-6 py-3 rounded-md font-bold text-sm transition-all duration-300 text-gray-400 hover:text-white hover:scale-105">
+                    <button id="btn-with" onclick="setPricing(true)" class="relative z-10 px-6 py-3 rounded-md font-bold text-sm transition-all duration-300 text-gray-400 hover:text-white hover:scale-105 glow-btn pulse-border border-2 border-transparent">
                         Include IEB London Cert.
                     </button>
                 </div>
@@ -431,7 +446,7 @@
                         </div>
                         <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex items-center">
                             <i class="fa-solid fa-graduation-cap text-secondary mr-2"></i>
-                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th</span>
+                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th (preferably)</span>
                         </div>
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start">
@@ -472,7 +487,7 @@
                         </div>
                         <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex items-center">
                             <i class="fa-solid fa-graduation-cap text-secondary mr-2"></i>
-                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th</span>
+                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th (preferably)</span>
                         </div>
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start">
@@ -512,7 +527,7 @@
                         </div>
                         <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex items-center">
                             <i class="fa-solid fa-graduation-cap text-secondary mr-2"></i>
-                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th</span>
+                            <span class="font-medium text-gray-300">Eligibility: Minimum 10th (preferably)</span>
                         </div>
                         <ul class="space-y-4 text-sm">
                             <li class="flex items-start">
@@ -553,7 +568,7 @@
                         <div class="bg-slate-800 rounded-lg p-3 text-sm border border-slate-700 mb-6 flex flex-col gap-1">
                             <div class="flex items-start">
                                 <i class="fa-solid fa-graduation-cap text-purple-400 mr-2 mt-1"></i>
-                                <span class="font-medium text-gray-300">Eligibility: Minimum Diploma</span>
+                                <span class="font-medium text-gray-300">Eligibility: Minimum Diploma (preferably)</span>
                             </div>
                             <span class="text-xs text-gray-600 ml-6">(with AutoCAD knowledge)</span>
                         </div>
@@ -581,6 +596,27 @@
                             <i class="fa-solid fa-paper-plane"></i> Enquire Now
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Little Boat -->
+            <div class="flex justify-center mt-8 relative z-20">
+                <div class="relative">
+                    <!-- Boat Body -->
+                    <div class="bg-gradient-to-b from-red-600 to-red-800 px-8 py-4 rounded-b-3xl shadow-xl border-4 border-red-700 relative" style="min-width: 300px;">
+                        <!-- Boat Window -->
+                        <div class="flex justify-center gap-4 mb-2">
+                            <div class="w-8 h-8 bg-yellow-400 rounded-full border-2 border-yellow-600 shadow-inner"></div>
+                            <div class="w-8 h-8 bg-yellow-400 rounded-full border-2 border-yellow-600 shadow-inner"></div>
+                        </div>
+                        <div class="flex items-center gap-3 justify-center">
+                            <i class="fa-solid fa-water text-white text-xl"></i>
+                            <p class="text-white font-bold text-sm">Switch between courses anytime! Compare pricing and features easily.</p>
+                            <i class="fa-solid fa-water text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <!-- Boat Hull Bottom -->
+                    <div class="w-full h-4 bg-red-900 rounded-b-xl"></div>
                 </div>
             </div>
         </div>
@@ -714,7 +750,6 @@
                         <li><a href="#courses" class="text-gray-400 hover:text-secondary transition">Plumbing Basic to Hi-Tech</a></li>
                         <li><a href="#courses" class="text-gray-400 hover:text-secondary transition">Design & Drafting</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-secondary transition">Fire Plumbing Courses</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-secondary transition">Certification Verification</a></li>
                     </ul>
                 </div>
 
@@ -873,54 +908,6 @@
             initWaterEffect();
         }
         
-        // Fish Animation
-        const fishContainer = document.getElementById('fish-container');
-        const fishSVGs = [
-            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#ff6b6b"/><path d="M90 30 L110 10 L110 50 Z" fill="#ff6b6b"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
-            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#feca57"/><path d="M90 30 L110 10 L110 50 Z" fill="#feca57"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
-            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#48dbfb"/><path d="M90 30 L110 10 L110 50 Z" fill="#48dbfb"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
-            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#ff9ff3"/><path d="M90 30 L110 10 L110 50 Z" fill="#ff9ff3"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`,
-            `<svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="30" rx="40" ry="20" fill="#1dd1a1"/><path d="M90 30 L110 10 L110 50 Z" fill="#1dd1a1"/><circle cx="25" cy="25" r="5" fill="white"/><circle cx="27" cy="25" r="2" fill="#333"/></svg>`
-        ];
-        
-        let fishCreated = false;
-        
-        function createFish() {
-            if (fishCreated) return;
-            fishCreated = true;
-            
-            for (let i = 0; i < 6; i++) {
-                const fish = document.createElement('div');
-                fish.className = 'fish';
-                const inner = document.createElement('div');
-                inner.className = 'fish-inner';
-                inner.innerHTML = fishSVGs[i % fishSVGs.length];
-                fish.appendChild(inner);
-                fish.style.left = (Math.random() * 60) + '%';
-                fish.style.bottom = (5 + Math.random() * 25) + '%';
-                fish.style.animationDelay = (Math.random() * 4) + 's';
-                fishContainer.appendChild(fish);
-                
-                setTimeout(() => {
-                    fish.classList.add('visible');
-                }, 300 * i);
-            }
-        }
-        
-        function checkFishVisibility() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-            const waterPercent = Math.min(scrollPercent * 1.2, 100);
-            
-            if (waterPercent >= 30) {
-                createFish();
-            }
-        }
-        
-        window.addEventListener('scroll', checkFishVisibility);
-        checkFishVisibility();
-        
         // Form Submission
         const form = document.querySelector('form');
         form.addEventListener('submit', async function(e) {
@@ -998,6 +985,5 @@
     </div>
     
     <!-- Fish Container -->
-    <div id="fish-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
 </body>
 </html>
